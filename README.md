@@ -60,7 +60,7 @@ src/
   systems/          spawner, slicer, audio, score, effects, ui
   entities/         cheese.ts, wine.ts, wheel.ts (+ common.ts helpers)
 scripts/
-  gen-assets.mjs    regenerates placeholder audio + icons (no deps)
+  gen-assets.mjs    regenerates the swiss-cheese app icons (no deps)
   verify.mjs        headless smoke test (needs `npm run dev` running + Chrome)
 ```
 
