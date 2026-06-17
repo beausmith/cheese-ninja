@@ -61,10 +61,8 @@ function encodePng(width, height, rgba) {
   ]);
 }
 
-// TEMPORARY app icon: the whole icon is a piece of swiss cheese — a pale-yellow
-// rounded slice that fills the tile, dotted with holes. Maskable fills edge to
-// edge (holes pulled into the safe zone); the regular icon leaves a thin brown
-// border so the rounded slice reads on light backgrounds.
+// TEMPORARY app icon: a cheddar wedge — brown backdrop, a cheese-orange triangle
+// (inset more for the maskable safe zone) with a couple of darker holes.
 function drawIcon(size, { maskable = false } = {}) {
   const rgba = Buffer.alloc(size * size * 4);
   const set = (x, y, r, g, b, a) => {
@@ -72,56 +70,42 @@ function drawIcon(size, { maskable = false } = {}) {
     const i = (y * size + x) * 4;
     rgba[i] = r; rgba[i + 1] = g; rgba[i + 2] = b; rgba[i + 3] = a;
   };
-
-  const bg = [42, 26, 7]; // cheese-rind brown backdrop
-  const swiss = [245, 222, 140]; // pale emmental yellow
-  const holeRim = [201, 161, 74]; // darker ring around each hole
-  const holeInner = [120, 86, 28]; // shadowed hole interior
-
-  // Fill the backdrop.
+  // Background
+  const bg = [42, 26, 7];
   for (let y = 0; y < size; y++)
     for (let x = 0; x < size; x++) set(x, y, bg[0], bg[1], bg[2], 255);
 
-  // The cheese slice: a rounded square. Full-bleed for maskable, slight margin
-  // otherwise.
-  const margin = maskable ? 0 : size * 0.06;
-  const r = size * (maskable ? 0.16 : 0.2); // corner radius
-  const lo = margin, hi = size - margin;
-  const inRounded = (px, py) => {
-    if (px < lo || px > hi || py < lo || py > hi) return false;
-    // Corner circles: only the rounded corners are excluded.
-    const cxL = lo + r, cxR = hi - r, cyT = lo + r, cyB = hi - r;
-    if (px < cxL && py < cyT) return (px - cxL) ** 2 + (py - cyT) ** 2 <= r * r;
-    if (px > cxR && py < cyT) return (px - cxR) ** 2 + (py - cyT) ** 2 <= r * r;
-    if (px < cxL && py > cyB) return (px - cxL) ** 2 + (py - cyB) ** 2 <= r * r;
-    if (px > cxR && py > cyB) return (px - cxR) ** 2 + (py - cyB) ** 2 <= r * r;
-    return true;
+  // A big triangle wedge (cheese). Inset more for maskable safe zone.
+  const pad = maskable ? size * 0.22 : size * 0.16;
+  const ax = pad, ay = size - pad; // bottom-left
+  const bx = size - pad, by = size - pad; // bottom-right
+  const cx = size - pad, cy = pad; // top-right
+  const sign = (px, py, qx, qy, rx, ry) =>
+    (px - rx) * (qy - ry) - (qx - rx) * (py - ry);
+  const inTri = (px, py) => {
+    const d1 = sign(px, py, ax, ay, bx, by);
+    const d2 = sign(px, py, bx, by, cx, cy);
+    const d3 = sign(px, py, cx, cy, ax, ay);
+    const neg = d1 < 0 || d2 < 0 || d3 < 0;
+    const pos = d1 > 0 || d2 > 0 || d3 > 0;
+    return !(neg && pos);
   };
-
-  // Holes (fractions of the icon). Kept inside the maskable safe zone (~10–90%).
+  const cheese = [251, 181, 64];
+  const rind = [201, 135, 26];
   const holes = [
-    [0.34, 0.32, 0.11],
-    [0.66, 0.28, 0.08],
-    [0.5, 0.55, 0.13],
-    [0.27, 0.68, 0.09],
-    [0.74, 0.66, 0.10],
-    [0.5, 0.84, 0.06],
-  ].map(([fx, fy, fr]) => [fx * size, fy * size, fr * size]);
-
+    [size * 0.62, size * 0.5, size * 0.07],
+    [size * 0.78, size * 0.68, size * 0.05],
+    [size * 0.7, size * 0.82, size * 0.045],
+  ];
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
-      const px = x + 0.5, py = y + 0.5;
-      if (!inRounded(px, py)) continue;
-      let color = swiss;
+      if (!inTri(x + 0.5, y + 0.5)) continue;
+      let inHole = false;
       for (const [hx, hy, hr] of holes) {
-        const d2 = (px - hx) ** 2 + (py - hy) ** 2;
-        if (d2 <= hr * hr) {
-          // Darker rim for the outer ~25% of the hole, shadow within.
-          color = d2 >= (hr * 0.78) ** 2 ? holeRim : holeInner;
-          break;
-        }
+        if ((x - hx) ** 2 + (y - hy) ** 2 <= hr * hr) inHole = true;
       }
-      set(x, y, color[0], color[1], color[2], 255);
+      if (inHole) set(x, y, rind[0], rind[1], rind[2], 255);
+      else set(x, y, cheese[0], cheese[1], cheese[2], 255);
     }
   }
   return rgba;
