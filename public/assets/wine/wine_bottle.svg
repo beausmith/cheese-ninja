@@ -1,0 +1,18 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wine bottle -->
+  <!-- body + neck outline -->
+  <path d="M118 66 L118 120 C118 138 92 150 90 176 L90 214 Q90 226 102 226
+           L154 226 Q166 226 166 214 L166 176 C164 150 138 138 138 120
+           L138 66 Z"
+        fill="#2E6B41" stroke="#1C4A2C" stroke-width="6" stroke-linejoin="round"/>
+  <!-- foil cap -->
+  <rect x="112" y="44" width="32" height="26" rx="4" fill="#7A1B2E" stroke="#5A1322" stroke-width="3"/>
+  <!-- glass highlight -->
+  <path d="M101 156 L101 208" stroke="#5FA873" stroke-width="9"
+        stroke-linecap="round" opacity="0.8"/>
+  <!-- label -->
+  <rect x="100" y="172" width="56" height="42" rx="5" fill="#F2E9D0" stroke="#D8C9A4" stroke-width="3"/>
+  <line x1="112" y1="186" x2="144" y2="186" stroke="#9A8B66" stroke-width="3" stroke-linecap="round"/>
+  <line x1="112" y1="196" x2="144" y2="196" stroke="#B7A77E" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="128" cy="206" r="3.5" fill="#7A1B2E"/>
+</svg>

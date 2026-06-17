@@ -1,0 +1,13 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Provolone / gouda round slice -->
+  <circle cx="128" cy="128" r="88" fill="#F6E7A8" stroke="#D9C062" stroke-width="6"/>
+  <!-- subtle inner rim -->
+  <circle cx="128" cy="128" r="80" fill="none" stroke="#EAD98D" stroke-width="3" opacity="0.7"/>
+  <!-- holes -->
+  <ellipse cx="150" cy="116" rx="11" ry="9" fill="#E6D079"/>
+  <ellipse cx="108" cy="150" rx="8" ry="7" fill="#E6D079"/>
+  <ellipse cx="128" cy="98" rx="6" ry="5" fill="#E6D079"/>
+  <!-- top-left highlight -->
+  <path d="M78 88 A88 88 0 0 1 152 62" fill="none" stroke="#FCF3CE"
+        stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+</svg>

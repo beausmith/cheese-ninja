@@ -1,0 +1,22 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Giant cheese wheel (bonus) -->
+  <!-- side -->
+  <path d="M28 110 V148 Q28 198 128 198 Q228 198 228 148 V110 Z"
+        fill="#DBA844" stroke="#B07F26" stroke-width="7" stroke-linejoin="round"/>
+  <!-- side shadow band near bottom -->
+  <path d="M30 168 Q30 196 128 196 Q226 196 226 168" fill="none"
+        stroke="#C5942F" stroke-width="10" opacity="0.5"/>
+  <!-- top -->
+  <ellipse cx="128" cy="110" rx="100" ry="48" fill="#E8C063" stroke="#B07F26" stroke-width="7"/>
+  <!-- radial cut lines (slice into wedges) -->
+  <g stroke="#C99A38" stroke-width="3" opacity="0.55" stroke-linecap="round">
+    <line x1="128" y1="110" x2="56" y2="98"/>
+    <line x1="128" y1="110" x2="200" y2="98"/>
+    <line x1="128" y1="110" x2="128" y2="66"/>
+    <line x1="128" y1="110" x2="82" y2="142"/>
+    <line x1="128" y1="110" x2="174" y2="142"/>
+  </g>
+  <!-- highlight -->
+  <path d="M70 92 A100 48 0 0 1 162 70" fill="none" stroke="#F6DE9A"
+        stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+</svg>

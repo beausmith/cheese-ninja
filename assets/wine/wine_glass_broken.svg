@@ -1,0 +1,19 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- red wine splash -->
+  <path d="M70 150 Q44 150 50 172 Q60 196 100 196 Q150 200 176 182 Q198 166 184 150
+           Q150 168 110 162 Q86 158 70 150 Z" fill="#7A132B" opacity="0.9"/>
+  <circle cx="64" cy="120" r="6" fill="#9A2138"/>
+  <circle cx="196" cy="132" r="5" fill="#9A2138"/>
+  <circle cx="180" cy="104" r="4" fill="#7A132B"/>
+  <!-- base + stem intact -->
+  <ellipse cx="128" cy="208" rx="34" ry="10" fill="#D7E2E6" stroke="#9FB3BC" stroke-width="4"/>
+  <rect x="124" y="150" width="8" height="58" fill="#E2ECEF" stroke="#9FB3BC" stroke-width="3"/>
+  <!-- shattered bowl: jagged remnant on the stem -->
+  <path d="M100 150 L96 120 L108 132 L116 110 L126 128 L136 108 L146 130 L158 116 L156 150 Z"
+        fill="#EAF2F4" fill-opacity="0.55" stroke="#9FB3BC" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M104 150 L104 132 L118 138 L128 130 L140 138 L152 132 L152 150 Z" fill="#7A132B"/>
+  <!-- flying bowl shards -->
+  <path d="M74 96 L92 92 L84 110 Z" fill="#EAF2F4" fill-opacity="0.6" stroke="#9FB3BC" stroke-width="3"/>
+  <path d="M170 84 L188 92 L172 102 Z" fill="#EAF2F4" fill-opacity="0.6" stroke="#9FB3BC" stroke-width="3"/>
+  <path d="M196 150 L210 158 L196 166 Z" fill="#EAF2F4" fill-opacity="0.6" stroke="#9FB3BC" stroke-width="3"/>
+</svg>

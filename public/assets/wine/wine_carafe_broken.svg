@@ -1,0 +1,21 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- spill -->
+  <path d="M48 224 Q34 236 62 246 Q126 258 196 246 Q226 240 208 226 Q160 238 104 232 Q72 228 48 224 Z"
+        fill="#7A132B" opacity="0.9"/>
+  <!-- carafe body with jagged broken top -->
+  <path d="M70 178 C70 150 84 130 100 118
+           L104 100 L114 112 L124 98 L134 112 L146 102 L148 118
+           C166 130 186 150 186 178 C186 206 160 222 128 222 C96 222 70 206 70 178 Z"
+        fill="#EAF2F4" fill-opacity="0.5" stroke="#9FB3BC" stroke-width="5" stroke-linejoin="round"/>
+  <!-- wine in body -->
+  <path d="M80 162 C90 198 110 210 128 210 C146 210 166 198 176 162
+           C150 174 106 174 80 162 Z" fill="#7A132B"/>
+  <ellipse cx="128" cy="162" rx="48" ry="9" fill="#9A2138"/>
+  <!-- crack line -->
+  <path d="M128 130 L120 150 L132 168 L122 188" fill="none" stroke="#9FB3BC" stroke-width="3" opacity="0.8"/>
+  <!-- highlight -->
+  <path d="M92 154 C86 178 96 198 112 208" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+  <!-- shards -->
+  <path d="M150 92 L166 96 L152 106 Z" fill="#EAF2F4" fill-opacity="0.6" stroke="#9FB3BC" stroke-width="3"/>
+  <path d="M198 150 L212 158 L198 166 Z" fill="#EAF2F4" fill-opacity="0.6" stroke="#9FB3BC" stroke-width="3"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cheddar wedge -->
+  <path d="M56 168 L168 80 Q210 132 192 200 Q120 206 56 168 Z"
+        fill="#FBB540" stroke="#C9871A" stroke-width="6" stroke-linejoin="round"/>
+  <!-- rind on the curved long edge -->
+  <path d="M168 80 Q210 132 192 200" fill="none" stroke="#E0922A"
+        stroke-width="13" stroke-linecap="round"/>
+  <!-- top-edge highlight -->
+  <path d="M66 162 L160 88" stroke="#FFD98C" stroke-width="9"
+        stroke-linecap="round" opacity="0.75"/>
+  <!-- holes -->
+  <circle cx="122" cy="138" r="13" fill="#E89B1C"/>
+  <circle cx="152" cy="172" r="9" fill="#E89B1C"/>
+  <circle cx="98" cy="172" r="7" fill="#E89B1C"/>
+</svg>

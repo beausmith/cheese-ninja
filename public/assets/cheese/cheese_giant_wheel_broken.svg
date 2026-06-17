@@ -1,0 +1,25 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- giant wheel fully broken into wedges -->
+  <g transform="translate(76,86) rotate(-28)">
+    <path d="M0 0 L-32 72 A40 40 0 0 0 32 72 Z" fill="#E2B250" stroke="#B07F26" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M-32 72 A40 40 0 0 0 32 72" fill="none" stroke="#C18F2E" stroke-width="8"/>
+    <path d="M0 6 L-26 64" stroke="#F2D285" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+    <path d="M0 6 L26 64" stroke="#F2D285" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  <g transform="translate(140,64) rotate(10)">
+    <path d="M0 0 L-30 70 A38 38 0 0 0 30 70 Z" fill="#E8C063" stroke="#B07F26" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M-30 70 A38 38 0 0 0 30 70" fill="none" stroke="#C18F2E" stroke-width="8"/>
+    <path d="M0 6 L-24 62" stroke="#F6DE9A" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+    <path d="M0 6 L24 62" stroke="#F6DE9A" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  <g transform="translate(184,104) rotate(40)">
+    <path d="M0 0 L-30 68 A38 38 0 0 0 30 68 Z" fill="#DBA844" stroke="#B07F26" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M-30 68 A38 38 0 0 0 30 68" fill="none" stroke="#C18F2E" stroke-width="8"/>
+    <path d="M0 6 L-24 60" stroke="#F2D285" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+    <path d="M0 6 L24 60" stroke="#F2D285" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  <!-- crumbs -->
+  <circle cx="96" cy="196" r="7" fill="#E0B04A" stroke="#B07F26" stroke-width="3"/>
+  <circle cx="150" cy="200" r="5" fill="#E8C063" stroke="#B07F26" stroke-width="2.5"/>
+  <circle cx="190" cy="186" r="4" fill="#DBA844"/>
+</svg>

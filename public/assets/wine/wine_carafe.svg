@@ -1,0 +1,17 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wine carafe / decanter -->
+  <!-- body -->
+  <path d="M108 70 L108 110 C84 124 70 150 70 178 C70 206 96 222 128 222
+           C160 222 186 206 186 178 C186 150 172 124 148 110 L148 70 Z"
+        fill="#EAF2F4" fill-opacity="0.5" stroke="#9FB3BC" stroke-width="5" stroke-linejoin="round"/>
+  <!-- wine -->
+  <path d="M82 156 C92 196 110 210 128 210 C146 210 164 196 174 156
+           C150 168 106 168 82 156 Z" fill="#7A132B"/>
+  <ellipse cx="128" cy="158" rx="46" ry="10" fill="#9A2138"/>
+  <!-- neck opening -->
+  <rect x="104" y="54" width="48" height="18" rx="5" fill="#EAF2F4" fill-opacity="0.6"
+        stroke="#9FB3BC" stroke-width="5"/>
+  <!-- highlight -->
+  <path d="M92 150 C86 176 96 198 112 208" fill="none" stroke="#FFFFFF"
+        stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+</svg>

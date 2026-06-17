@@ -1,0 +1,19 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full wine glass -->
+  <!-- base -->
+  <ellipse cx="128" cy="208" rx="34" ry="10" fill="#D7E2E6" stroke="#9FB3BC" stroke-width="4"/>
+  <!-- stem -->
+  <rect x="124" y="150" width="8" height="58" fill="#E2ECEF" stroke="#9FB3BC" stroke-width="3"/>
+  <!-- bowl -->
+  <path d="M88 74 C88 132 108 152 128 152 C148 152 168 132 168 74 Z"
+        fill="#EAF2F4" fill-opacity="0.55" stroke="#9FB3BC" stroke-width="5" stroke-linejoin="round"/>
+  <!-- wine -->
+  <path d="M99 100 C104 134 116 148 128 148 C140 148 152 134 157 100 Z" fill="#7A132B"/>
+  <!-- wine surface -->
+  <ellipse cx="128" cy="100" rx="29" ry="8" fill="#9A2138"/>
+  <!-- rim -->
+  <ellipse cx="128" cy="74" rx="40" ry="10" fill="none" stroke="#9FB3BC" stroke-width="5"/>
+  <!-- highlight -->
+  <path d="M104 90 C100 116 106 134 116 144" fill="none" stroke="#FFFFFF"
+        stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+</svg>

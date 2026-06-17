@@ -1,0 +1,25 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- red wine spill -->
+  <path d="M44 224 Q30 236 58 246 Q120 258 188 248 Q224 242 206 226 Q160 238 104 232 Q70 228 44 224 Z"
+        fill="#7A132B" opacity="0.92"/>
+  <ellipse cx="120" cy="240" rx="70" ry="8" fill="#9A2138" opacity="0.5"/>
+  <!-- standing lower body with jagged break -->
+  <path d="M92 226 Q92 234 104 234 L152 234 Q164 234 164 226 L164 150
+           C162 138 154 132 154 122 L142 130 L134 116 L124 132 L114 116 L104 130 L98 120
+           C96 132 92 140 92 150 Z"
+        fill="#2E6B41" stroke="#1C4A2C" stroke-width="6" stroke-linejoin="round"/>
+  <!-- wine inside -->
+  <path d="M100 150 C99 138 104 132 110 126 L116 134 L124 124 L132 134 L140 126 C150 134 156 140 156 150
+           L156 168 C140 176 116 176 100 168 Z" fill="#7A132B"/>
+  <!-- highlight -->
+  <path d="M101 160 L101 206" stroke="#5FA873" stroke-width="8" stroke-linecap="round" opacity="0.75"/>
+  <!-- snapped neck + foil, off to the side -->
+  <g transform="translate(190,74) rotate(46)">
+    <rect x="-12" y="0" width="24" height="50" fill="#2E6B41" stroke="#1C4A2C" stroke-width="5"/>
+    <rect x="-14" y="-22" width="28" height="24" rx="4" fill="#7A1B2E" stroke="#5A1322" stroke-width="3"/>
+  </g>
+  <!-- glass shards -->
+  <path d="M58 168 L72 158 L70 178 Z" fill="#2E6B41" stroke="#1C4A2C" stroke-width="3"/>
+  <path d="M196 168 L210 176 L194 184 Z" fill="#3A7A4E" stroke="#1C4A2C" stroke-width="3"/>
+  <path d="M150 92 L162 96 L150 104 Z" fill="#3A7A4E" stroke="#1C4A2C" stroke-width="2.5"/>
+</svg>
