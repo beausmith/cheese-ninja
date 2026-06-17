@@ -16,7 +16,7 @@ export function registerEndScene(k: KAPLAYCtx): void {
     const { score, isNewBest } = data;
 
     k.add([
-      k.text("TIME'S UP!", { size: 64 }),
+      k.text("Time’s Up!", { size: 64 }),
       k.pos(cx, k.height() * 0.22),
       k.anchor("center"),
       k.color(245, 222, 140),

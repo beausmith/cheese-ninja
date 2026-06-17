@@ -72,7 +72,7 @@ function speakerIcon(k: KAPLAYCtx) {
     id: "speakerIcon",
     draw() {
       const muted = isMuted();
-      const fg = muted ? k.rgb(150, 138, 104) : k.rgb(245, 222, 140);
+      const fg = k.rgb(245, 222, 140);
       // Speaker body: back box + flaring cone, as one polygon.
       k.drawPolygon({
         pts: [
@@ -86,9 +86,12 @@ function speakerIcon(k: KAPLAYCtx) {
         color: fg,
       });
       if (muted) {
-        // Diagonal "no sound" slash with a dark backing for contrast.
-        k.drawLine({ p1: k.vec2(-13, -13), p2: k.vec2(15, 15), width: 7, color: k.rgb(40, 24, 8) });
-        k.drawLine({ p1: k.vec2(-13, -13), p2: k.vec2(15, 15), width: 4, color: k.rgb(235, 90, 80) });
+        // An X sitting where the sound waves would be, so the on/off states
+        // share the same footprint and color (the classic "muted" glyph).
+        const cx = 15;
+        const h = 7;
+        k.drawLine({ p1: k.vec2(cx - h, -h), p2: k.vec2(cx + h, h), width: 3, color: fg });
+        k.drawLine({ p1: k.vec2(cx - h, h), p2: k.vec2(cx + h, -h), width: 3, color: fg });
       } else {
         // Two sound-wave arcs radiating from the cone.
         for (const r of [13, 19]) {
