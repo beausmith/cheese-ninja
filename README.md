@@ -5,6 +5,11 @@ A Fruit-Ninja-style swipe game: **slice the flying cheese** (each slice farts �
 Each round is 30 seconds. Built as an installable **Progressive Web App** with
 TypeScript + [KAPLAY](https://kaplayjs.com/) + Vite.
 
+### ▶️ Play it: **https://beausmith.github.io/cheese-ninja/**
+
+On a phone, open that URL and "Add to Home Screen" to install it fullscreen and
+play offline.
+
 ## Run it
 
 ```bash
@@ -16,10 +21,17 @@ Build / preview the production (installable, offline-capable) version:
 
 ```bash
 npm run build
-npm run preview
+npm run preview -- --base /cheese-ninja/   # preview matches the Pages subpath
 ```
 
-On a phone, open the URL and "Add to Home Screen" to install it fullscreen.
+## Deployment
+
+Pushing to `main` triggers [.github/workflows/deploy.yml](.github/workflows/deploy.yml),
+which builds the app and publishes `dist/` to GitHub Pages. The production build
+is served under the `/cheese-ninja/` subpath, so all asset URLs are routed through
+`import.meta.env.BASE_URL` (see [src/loadAssets.ts](src/loadAssets.ts)) and Vite's
+`base` is set in [vite.config.ts](vite.config.ts). If you fork/rename the repo,
+update `base` (and this README's URL) to match.
 
 ## How to play
 
