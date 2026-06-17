@@ -19,7 +19,7 @@ export default defineConfig(({ command }) => ({
       includeAssets: ["assets/**/*"],
       workbox: {
         // Cache everything we ship, including the SVG + audio assets.
-        globPatterns: ["**/*.{js,css,html,svg,png,ico,mp3,wav,ogg,webmanifest}"],
+        globPatterns: ["**/*.{js,css,html,svg,png,ico,mp3,wav,ogg,ttf,woff,woff2,webmanifest}"],
         // Audio clips can push past the default 2 MiB cap.
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
       },

@@ -1,7 +1,7 @@
 // Entry point: create the KAPLAY context, load assets, wire scenes, and start.
 
 import kaplay from "kaplay";
-import { loadGameAssets } from "./loadAssets";
+import { loadGameAssets, GAME_FONT } from "./loadAssets";
 import { initAudio } from "./systems/audio";
 import { initSafeArea } from "./systems/safeArea";
 import { registerStartScene } from "./scenes/start";
@@ -15,6 +15,7 @@ const k = kaplay({
   background: [42, 26, 7], // deep cheese-rind brown
   touchToMouse: true, // treat touch as mouse so one input path covers both
   global: false,
+  font: GAME_FONT, // whimsical Lilita One as the default for all text
   pixelDensity: Math.min(2, window.devicePixelRatio || 1),
   // No fixed width/height: the canvas fills the page and resizes with it.
 });

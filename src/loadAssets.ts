@@ -64,8 +64,14 @@ export const SFX = {
 // otherwise "/assets/..." would 404 when the site is served under a subpath.
 const asset = (path: string): string => `${import.meta.env.BASE_URL}${path}`;
 
-/** Load every sprite and sound the game needs. Call once, right after creating the KAPLAY context. */
+// The whimsical display font (Lilita One, OFL), bundled locally so it works
+// offline. Registered under this key and set as KAPLAY's default font in main.ts.
+export const GAME_FONT = "lilita";
+
+/** Load every sprite, sound, and font the game needs. Call once, right after creating the KAPLAY context. */
 export function loadGameAssets(k: KAPLAYCtx): void {
+  k.loadFont(GAME_FONT, asset("assets/fonts/LilitaOne-Regular.ttf"));
+
   // --- Cheese: whole + left/right halves ---
   for (const t of CHEESE_TYPES) {
     k.loadSprite(`cheese_${t}`,   asset(`assets/cheese/cheese_${t}.svg`));
