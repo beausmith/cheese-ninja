@@ -46,18 +46,19 @@ export function registerGameScene(k: KAPLAYCtx): void {
       k.z(100),
     ]);
 
-    // Timer sits top-center (the top-right corner is the mute icon).
+    // Timer sits in the top-right corner.
     const timeLabel = k.add([
       k.text("30", { size: 44 }),
-      k.pos(k.width() / 2, topY),
-      k.anchor("top"),
+      k.pos(k.width() - ins.right - 22, topY),
+      k.anchor("topright"),
       k.color(255, 255, 255),
       k.outline(4, k.rgb(0, 0, 0)),
       k.fixed(),
       k.z(100),
     ]);
 
-    addMuteButton(k);
+    // Mute icon sits top-center (between score and timer).
+    addMuteButton(k, "top-center");
 
     // --- What happens when the slicer cuts something ---
     const handleSlice = (result: SliceResult, ctx: SliceContext) => {

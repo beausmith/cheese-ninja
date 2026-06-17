@@ -104,14 +104,21 @@ function speakerIcon(k: KAPLAYCtx) {
  * clear of the device safe-area inset. Tapping it toggles sound; the glyph
  * flips between a speaker (on) and a slashed speaker (off).
  */
-export function addMuteButton(k: KAPLAYCtx): GameObj {
+export function addMuteButton(
+  k: KAPLAYCtx,
+  placement: "top-right" | "top-center" = "top-right",
+): GameObj {
   const OFFSET = 34; // distance of the icon center from the screen edge
   const TAP = 30; // half-size of the (generous) tap target
 
   // Where the icon center sits right now, given the live viewport + insets.
   const center = () => {
     const ins = safeInsets();
-    return k.vec2(k.width() - ins.right - OFFSET, ins.top + OFFSET);
+    const x =
+      placement === "top-center"
+        ? k.width() / 2
+        : k.width() - ins.right - OFFSET;
+    return k.vec2(x, ins.top + OFFSET);
   };
 
   const btn = k.add([

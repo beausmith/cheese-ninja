@@ -34,7 +34,7 @@ export function registerStartScene(k: KAPLAYCtx): void {
     // Hint. `width` makes KAPLAY wrap the text so it never runs off a narrow
     // phone screen.
     k.add([
-      k.text("Slice the cheese.\nDodge the wine.", {
+      k.text("Cut the cheese.\nDodge the wine.", {
         size: 26,
         align: "center",
         width: k.width() * 0.9,
@@ -46,7 +46,7 @@ export function registerStartScene(k: KAPLAYCtx): void {
 
     // High score
     k.add([
-      k.text(`Best: ${getHighScore()}`, { size: 30 }),
+      k.text(`High Score: ${getHighScore()}`, { size: 30 }),
       k.pos(cx, k.height() * 0.66),
       k.anchor("center"),
       k.color(245, 222, 140),

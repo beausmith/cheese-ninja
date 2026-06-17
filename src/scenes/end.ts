@@ -45,7 +45,7 @@ export function registerEndScene(k: KAPLAYCtx): void {
       });
     } else {
       k.add([
-        k.text(`Best: ${getHighScore()}`, { size: 36 }),
+        k.text(`High Score: ${getHighScore()}`, { size: 36 }),
         k.pos(cx, k.height() * 0.5),
         k.anchor("center"),
         k.color(245, 222, 140),
