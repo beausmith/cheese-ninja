@@ -13,7 +13,8 @@ import {
   playChime,
   playRoundEnd,
 } from "../systems/audio";
-import { addMuteToggle } from "../systems/ui";
+import { addMuteButton } from "../systems/ui";
+import { safeInsets } from "../systems/safeArea";
 import type { SliceResult } from "../entities/common";
 
 const YELLOW = [245, 222, 140] as const;
@@ -31,9 +32,13 @@ export function registerGameScene(k: KAPLAYCtx): void {
     const spawner = createSpawner(k);
 
     // --- HUD (fixed so it ignores object motion) ---
+    // Offset by the safe-area insets so nothing hides under a notch / status bar.
+    const ins = safeInsets();
+    const topY = ins.top + 18;
+
     const scoreLabel = k.add([
       k.text("0", { size: 44 }),
-      k.pos(24, 20),
+      k.pos(ins.left + 22, topY),
       k.anchor("topleft"),
       k.color(...YELLOW),
       k.outline(4, k.rgb(0, 0, 0)),
@@ -41,17 +46,18 @@ export function registerGameScene(k: KAPLAYCtx): void {
       k.z(100),
     ]);
 
+    // Timer sits top-center (the top-right corner is the mute icon).
     const timeLabel = k.add([
       k.text("30", { size: 44 }),
-      k.pos(k.width() - 24, 20),
-      k.anchor("topright"),
+      k.pos(k.width() / 2, topY),
+      k.anchor("top"),
       k.color(255, 255, 255),
       k.outline(4, k.rgb(0, 0, 0)),
       k.fixed(),
       k.z(100),
     ]);
 
-    addMuteToggle(k, k.vec2(k.width() / 2, 44));
+    addMuteButton(k);
 
     // --- What happens when the slicer cuts something ---
     const handleSlice = (result: SliceResult, ctx: SliceContext) => {

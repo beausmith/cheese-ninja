@@ -2,7 +2,7 @@
 
 import type { KAPLAYCtx } from "kaplay";
 import { getHighScore } from "../systems/score";
-import { addButton, addMuteToggle } from "../systems/ui";
+import { addButton, addMuteButton } from "../systems/ui";
 
 export function registerStartScene(k: KAPLAYCtx): void {
   k.scene("start", () => {
@@ -59,8 +59,8 @@ export function registerStartScene(k: KAPLAYCtx): void {
       onClick: () => k.go("game"),
     });
 
-    // Mute toggle
-    addMuteToggle(k, k.vec2(cx, k.height() * 0.9));
+    // Mute toggle (speaker icon, top-right corner)
+    addMuteButton(k);
 
     // Also allow a tap/space anywhere (besides the buttons) to start quickly.
     k.onKeyPress("space", () => k.go("game"));

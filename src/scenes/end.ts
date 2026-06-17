@@ -3,7 +3,7 @@
 
 import type { KAPLAYCtx } from "kaplay";
 import { getHighScore } from "../systems/score";
-import { addButton, addMuteToggle } from "../systems/ui";
+import { addButton, addMuteButton } from "../systems/ui";
 
 interface EndData {
   score: number;
@@ -67,7 +67,7 @@ export function registerEndScene(k: KAPLAYCtx): void {
       onClick: () => k.go("start"),
     });
 
-    addMuteToggle(k, k.vec2(cx, k.height() * 0.92));
+    addMuteButton(k);
 
     k.onKeyPress("space", () => k.go("game"));
   });

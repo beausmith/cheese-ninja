@@ -3,6 +3,7 @@
 
 import type { KAPLAYCtx, Vec2, GameObj } from "kaplay";
 import { initAudio, isMuted, toggleMute } from "./audio";
+import { safeInsets } from "./safeArea";
 
 interface ButtonOpts {
   label: string;
@@ -46,33 +47,95 @@ export function addButton(k: KAPLAYCtx, opts: ButtonOpts): GameObj {
   return btn;
 }
 
+// Sample points along a circular arc (degrees), for drawing the sound waves.
+function arcPts(
+  k: KAPLAYCtx,
+  cx: number,
+  cy: number,
+  r: number,
+  a0: number,
+  a1: number,
+  steps = 14,
+): Vec2[] {
+  const pts: Vec2[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const a = ((a0 + (a1 - a0) * (i / steps)) * Math.PI) / 180;
+    pts.push(k.vec2(cx + Math.cos(a) * r, cy + Math.sin(a) * r));
+  }
+  return pts;
+}
+
+// Draws a speaker glyph centered on the object's origin. Shows sound waves when
+// unmuted, or a red slash when muted.
+function speakerIcon(k: KAPLAYCtx) {
+  return {
+    id: "speakerIcon",
+    draw() {
+      const muted = isMuted();
+      const fg = muted ? k.rgb(150, 138, 104) : k.rgb(245, 222, 140);
+      // Speaker body: back box + flaring cone, as one polygon.
+      k.drawPolygon({
+        pts: [
+          k.vec2(-12, -5),
+          k.vec2(-6, -5),
+          k.vec2(1, -11),
+          k.vec2(1, 11),
+          k.vec2(-6, 5),
+          k.vec2(-12, 5),
+        ],
+        color: fg,
+      });
+      if (muted) {
+        // Diagonal "no sound" slash with a dark backing for contrast.
+        k.drawLine({ p1: k.vec2(-13, -13), p2: k.vec2(15, 15), width: 7, color: k.rgb(40, 24, 8) });
+        k.drawLine({ p1: k.vec2(-13, -13), p2: k.vec2(15, 15), width: 4, color: k.rgb(235, 90, 80) });
+      } else {
+        // Two sound-wave arcs radiating from the cone.
+        for (const r of [13, 19]) {
+          k.drawLines({ pts: arcPts(k, 1, 0, r, -42, 42), width: 3, color: fg, cap: "round" });
+        }
+      }
+    },
+  };
+}
+
 /**
- * Add the mute toggle in the top area. Label flips between ON/MUTED.
- * Position it yourself via `pos`.
+ * Add the mute toggle as a small speaker icon pinned to the top-right corner,
+ * clear of the device safe-area inset. Tapping it toggles sound; the glyph
+ * flips between a speaker (on) and a slashed speaker (off).
  */
-export function addMuteToggle(k: KAPLAYCtx, pos: Vec2): GameObj {
-  const label = () => (isMuted() ? "SOUND: OFF" : "SOUND: ON");
+export function addMuteButton(k: KAPLAYCtx): GameObj {
+  const OFFSET = 34; // distance of the icon center from the screen edge
+  const TAP = 30; // half-size of the (generous) tap target
+
+  // Where the icon center sits right now, given the live viewport + insets.
+  const center = () => {
+    const ins = safeInsets();
+    return k.vec2(k.width() - ins.right - OFFSET, ins.top + OFFSET);
+  };
 
   const btn = k.add([
-    k.rect(220, 56, { radius: 12 }),
-    k.pos(pos),
+    k.pos(center()),
     k.anchor("center"),
-    k.color(60, 36, 10),
-    k.outline(3, k.rgb(201, 135, 26)),
-    k.area(),
     k.fixed(),
     k.z(100),
+    speakerIcon(k),
+    {
+      // Re-pin every frame so it stays correct through rotation / resize.
+      update(this: GameObj) {
+        this.pos = center();
+      },
+    },
   ]);
 
-  const txt = btn.add([
-    k.text(label(), { size: 24 }),
-    k.anchor("center"),
-    k.color(245, 222, 140),
-  ]);
-
-  btn.onClick(() => {
-    toggleMute(k);
-    txt.text = label();
+  // Hit-test taps ourselves — reliable for a fixed, canvas-drawn icon. A quick
+  // tap is too slow to register as a slice, so this won't fight the slicer.
+  k.onMousePress(() => {
+    const c = center();
+    const m = k.mousePos();
+    if (Math.abs(m.x - c.x) <= TAP && Math.abs(m.y - c.y) <= TAP) {
+      toggleMute(k);
+    }
   });
 
   return btn;

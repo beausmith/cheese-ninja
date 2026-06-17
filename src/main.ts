@@ -3,6 +3,7 @@
 import kaplay from "kaplay";
 import { loadGameAssets } from "./loadAssets";
 import { initAudio } from "./systems/audio";
+import { initSafeArea } from "./systems/safeArea";
 import { registerStartScene } from "./scenes/start";
 import { registerGameScene } from "./scenes/game";
 import { registerEndScene } from "./scenes/end";
@@ -18,9 +19,10 @@ const k = kaplay({
   // No fixed width/height: the canvas fills the page and resizes with it.
 });
 
-// Register every sprite + sound, then set up audio unlock/mute.
+// Register every sprite + sound, then set up audio unlock/mute + safe-area insets.
 loadGameAssets(k);
 initAudio(k);
+initSafeArea();
 
 // Wire up the three scenes.
 registerStartScene(k);
