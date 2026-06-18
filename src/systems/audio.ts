@@ -90,8 +90,8 @@ export function playWhoosh(k: KAPLAYCtx): void {
   k.play(SFX.whoosh, { volume: 0.5 });
 }
 
-export function playChime(k: KAPLAYCtx): void {
-  k.play(SFX.chime, { volume: 1 });
+export function playExplosion(k: KAPLAYCtx): void {
+  k.play(SFX.explosion, { volume: 1 });
 }
 
 export function playRoundEnd(k: KAPLAYCtx): void {

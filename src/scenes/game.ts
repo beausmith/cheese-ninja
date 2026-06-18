@@ -10,7 +10,7 @@ import { floatingText } from "../systems/effects";
 import {
   playRandomFart,
   playGlassBreak,
-  playChime,
+  playExplosion,
   playRoundEnd,
 } from "../systems/audio";
 import { addMuteButton } from "../systems/ui";
@@ -90,7 +90,7 @@ export function registerGameScene(k: KAPLAYCtx): void {
         if (result.broke) {
           score.add(config.WHEEL_BREAK_POINTS);
           timeLeft += config.WHEEL_BREAK_TIME_BONUS;
-          playChime(k);
+          playExplosion(k);
           floatingText(
             k,
             ctx.pos,

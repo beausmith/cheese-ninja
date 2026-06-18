@@ -55,7 +55,7 @@ export const GLASS_KEYS = [
 // Stable keys for the remaining single-shot sound effects.
 export const SFX = {
   whoosh: "sfx_whoosh",
-  chime: "sfx_chime",
+  explosion: "sfx_explosion", // plays when the giant wheel fully shatters
   roundEnd: "sfx_round_end",
 } as const;
 
@@ -98,9 +98,9 @@ export function loadGameAssets(k: KAPLAYCtx): void {
   for (const key of GLASS_KEYS) {
     k.loadSound(key, asset(`assets/audio/sfx/${key}.mp3`));
   }
-  k.loadSound(SFX.whoosh,   asset("assets/audio/sfx/whoosh.mp3"));
-  k.loadSound(SFX.chime,    asset("assets/audio/sfx/chime.mp3"));
-  k.loadSound(SFX.roundEnd, asset("assets/audio/sfx/round_end.mp3"));
+  k.loadSound(SFX.whoosh,    asset("assets/audio/sfx/whoosh.mp3"));
+  k.loadSound(SFX.explosion, asset("assets/audio/sfx/explosion.mp3"));
+  k.loadSound(SFX.roundEnd,  asset("assets/audio/sfx/round_end.mp3"));
 }
 
 /** Random regular-cheese sprite key, e.g. "cheese_swiss_square" (excludes the giant wheel). */

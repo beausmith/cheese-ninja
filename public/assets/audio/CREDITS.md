@@ -25,7 +25,7 @@ some farts were trimmed/split from longer files with ffmpeg.
 | glass_break3.mp3 | Breaking Glass | ngruber | [204777](https://freesound.org/s/204777/) | shatter 3 of 4, split from file |
 | glass_break4.mp3 | Breaking Glass | ngruber | [204777](https://freesound.org/s/204777/) | shatter 4 of 4, split from file |
 | whoosh.mp3 | Sfx - Whoosh High 1 (4) | Sheyvan | [568299](https://freesound.org/s/568299/) | optional slice swoosh |
-| chime.mp3 | Subway Station Chime | plasterbrain | [419491](https://freesound.org/s/419491/) | giant-wheel break bonus |
+| explosion.mp3 | Real explosion recording (new year's eve, no effects) | modusmogulus | [784163](https://freesound.org/s/784163/) | giant-wheel break bonus |
 | round_end.mp3 | Tada Fanfare A | plasterbrain | [397355](https://freesound.org/s/397355/) | celebratory end-of-round |
 
 A random glass shatter (1–4) plays each time a wine item breaks.
