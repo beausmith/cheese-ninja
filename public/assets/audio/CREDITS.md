@@ -1,9 +1,11 @@
 # Audio credits & licenses
 
-All clips below are **CC0 1.0 (public domain)** — sourced from
-[freesound.org](https://freesound.org). CC0 requires no attribution, but we credit
-the authors here as good practice. Clips are the API's high-quality mp3 previews;
-some farts were trimmed/split from longer files with ffmpeg.
+Clips are sourced from [freesound.org](https://freesound.org). All are
+**CC0 1.0 (public domain)** — which needs no attribution, though we credit the
+authors anyway as good practice — **except where the table notes a different
+license**. The one exception today is `explosion.mp3` (**CC BY 4.0**), which
+*requires* attribution to its author (Artninja). Clips are the API's high-quality
+mp3 previews; some were trimmed/split from longer files with ffmpeg.
 
 ## Fart pool (`farts/`)
 
@@ -25,7 +27,7 @@ some farts were trimmed/split from longer files with ffmpeg.
 | glass_break3.mp3 | Breaking Glass | ngruber | [204777](https://freesound.org/s/204777/) | shatter 3 of 4, split from file |
 | glass_break4.mp3 | Breaking Glass | ngruber | [204777](https://freesound.org/s/204777/) | shatter 4 of 4, split from file |
 | whoosh.mp3 | Sfx - Whoosh High 1 (4) | Sheyvan | [568299](https://freesound.org/s/568299/) | optional slice swoosh |
-| explosion.mp3 | Real explosion recording (new year's eve, no effects) | modusmogulus | [784163](https://freesound.org/s/784163/) | giant-wheel break bonus |
+| explosion.mp3 | custom rock impact sound pt3 (5th impact) | Artninja | [847207](https://freesound.org/s/847207/) | giant-wheel break — **CC BY 4.0**, attribution required |
 | round_end.mp3 | Tada Fanfare A | plasterbrain | [397355](https://freesound.org/s/397355/) | celebratory end-of-round |
 
 A random glass shatter (1–4) plays each time a wine item breaks.
@@ -39,6 +41,8 @@ Original (untrimmed) downloads are kept outside the shipped build in
 - `663636.mp3` — FART SOUND 50 by frenkfurth (CC0) — multiple toots, used for fart4
 - `204777.mp3` — "Breaking Glass" by ngruber (CC0), 21.5s — first 4 shatters split
   out for glass_break1–4. Plenty more breaks remain if you want additional variants.
+- `847207.mp3` — "custom rock impact sound pt3" by Artninja (**CC BY 4.0**), 32s —
+  the 5th impact (~15.6–16.6s) is `explosion.mp3`. Seven other impacts remain.
 
 ## Swapping in different clips
 
