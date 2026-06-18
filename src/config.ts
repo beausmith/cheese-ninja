@@ -21,8 +21,8 @@ export const config = {
   // --- Spawning / difficulty ramp ---
   SPAWN_INTERVAL_START: 1.2, // Seconds between spawns at round start
   SPAWN_INTERVAL_END: 0.6, // Seconds between spawns by the end (faster = harder)
-  WINE_SPAWN_CHANCE: 0.20, // Chance a normal spawn is wine instead of cheese
-  WHEEL_SPAWN_CHANCE_PER_SEC: 0.04, // Per-second chance to roll a rare giant wheel
+  WINE_SPAWN_CHANCE: 0.15, // Chance a normal spawn is wine instead of cheese
+  WHEEL_SPAWN_CHANCE_PER_SEC: 0.07, // Per-second chance to roll a rare giant wheel
 
   // --- Swiping ---
   MIN_SWIPE_SPEED: 900, // Min pointer speed (px/sec) for a swipe to count as a slice
@@ -39,9 +39,10 @@ export const config = {
   LAUNCH_VX_SPREAD: 400, // Max horizontal drift either direction
   SPIN_SPEED: 180, // Max spin (degrees/sec) given to objects and halves
 
-  // Giant wheel moves bigger and slower so it's sliceable several times.
-  WHEEL_VY_MIN: -1250,
-  WHEEL_VY_MAX: -1450,
+  // Giant wheel: launches high (and stays airborne a while) so it's sliceable
+  // several times. Make these MORE negative to fly higher, less to fly lower.
+  WHEEL_VY_MIN: -1600,
+  WHEEL_VY_MAX: -1850,
   WHEEL_SCALE: 1.8, // Wheel is drawn larger than normal cheese
 
   // --- Visuals ---
