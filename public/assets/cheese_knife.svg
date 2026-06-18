@@ -1,0 +1,33 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cheese knife, pointing RIGHT. Cutting tip (forked) at the right edge so it
+       can be used as a cursor with the hotspot at ~(236,128). -->
+
+  <!-- Handle (wood) -->
+  <rect x="20" y="111" width="74" height="34" rx="14"
+        fill="#8A5A2B" stroke="#5E3D1C" stroke-width="5"/>
+  <!-- handle rivets -->
+  <circle cx="40" cy="128" r="3.5" fill="#5E3D1C"/>
+  <circle cx="62" cy="128" r="3.5" fill="#5E3D1C"/>
+
+  <!-- Bolster (silver collar between handle and blade) -->
+  <rect x="92" y="106" width="14" height="44" rx="4"
+        fill="#C2CAD3" stroke="#8A929C" stroke-width="4"/>
+
+  <!-- Blade (steel) with a forked tip on the right -->
+  <path d="M104 110
+           L210 103
+           L236 115
+           L221 128
+           L236 141
+           L210 153
+           L104 146 Z"
+        fill="#D7DEE6" stroke="#8A929C" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- Holes in the blade (classic cheese-knife look) -->
+  <circle cx="138" cy="128" r="11" fill="#AEB6BF"/>
+  <circle cx="172" cy="126" r="9"  fill="#AEB6BF"/>
+  <circle cx="200" cy="129" r="6.5" fill="#AEB6BF"/>
+
+  <!-- A little shine on the blade -->
+  <path d="M112 116 L205 110" stroke="#F2F6FA" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+</svg>

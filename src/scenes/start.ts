@@ -3,6 +3,7 @@
 import type { KAPLAYCtx } from "kaplay";
 import { getHighScore } from "../systems/score";
 import { addButton, addMuteButton } from "../systems/ui";
+import { addKnifeCursor } from "../systems/cursor";
 
 export function registerStartScene(k: KAPLAYCtx): void {
   k.scene("start", () => {
@@ -61,6 +62,9 @@ export function registerStartScene(k: KAPLAYCtx): void {
 
     // Mute toggle (speaker icon, top-right corner)
     addMuteButton(k);
+
+    // Cheese-knife pointer.
+    addKnifeCursor(k);
 
     // Also allow a tap/space anywhere (besides the buttons) to start quickly.
     k.onKeyPress("space", () => k.go("game"));

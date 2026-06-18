@@ -91,6 +91,9 @@ export function loadGameAssets(k: KAPLAYCtx): void {
     k.loadSprite(`wine_${t}_broken`, asset(`assets/wine/wine_${t}_broken.svg`));
   }
 
+  // --- Cheese knife (used as the custom pointer) ---
+  k.loadSprite("knife", asset("assets/cheese_knife.svg"));
+
   // --- Audio: fart pool + glass pool + sfx (real CC0 clips, mp3) ---
   for (const key of FART_KEYS) {
     k.loadSound(key, asset(`assets/audio/farts/${key}.mp3`));

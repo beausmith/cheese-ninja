@@ -14,6 +14,7 @@ import {
   playRoundEnd,
 } from "../systems/audio";
 import { addMuteButton } from "../systems/ui";
+import { addKnifeCursor } from "../systems/cursor";
 import { safeInsets } from "../systems/safeArea";
 import type { SliceResult } from "../entities/common";
 
@@ -59,6 +60,9 @@ export function registerGameScene(k: KAPLAYCtx): void {
 
     // Mute icon sits top-center (between score and timer).
     addMuteButton(k, "top-center");
+
+    // Cheese-knife pointer.
+    addKnifeCursor(k);
 
     // --- What happens when the slicer cuts something ---
     const handleSlice = (result: SliceResult, ctx: SliceContext) => {

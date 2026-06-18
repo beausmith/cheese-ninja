@@ -4,6 +4,7 @@
 import type { KAPLAYCtx } from "kaplay";
 import { getHighScore } from "../systems/score";
 import { addButton, addMuteButton } from "../systems/ui";
+import { addKnifeCursor } from "../systems/cursor";
 
 interface EndData {
   score: number;
@@ -68,6 +69,9 @@ export function registerEndScene(k: KAPLAYCtx): void {
     });
 
     addMuteButton(k);
+
+    // Cheese-knife pointer.
+    addKnifeCursor(k);
 
     k.onKeyPress("space", () => k.go("game"));
   });
