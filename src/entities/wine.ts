@@ -8,7 +8,7 @@ import { WINE_TYPES } from "../loadAssets";
 import {
   physics,
   spin,
-  launchVelocity,
+  makeArc,
   randomSpawnX,
   type SliceResult,
 } from "./common";
@@ -23,7 +23,11 @@ export function spawnWine(k: KAPLAYCtx): GameObj {
   const baseKey = `wine_${type}`;
   const startX = randomSpawnX(k);
   const startPos = k.vec2(startX, k.height() + 80);
-  const vel = launchVelocity(k, startX, config.LAUNCH_VY_MIN, config.LAUNCH_VY_MAX);
+  const arc = makeArc(
+    k, startX,
+    config.ARC_PEAK_MIN, config.ARC_PEAK_MAX,
+    config.ARC_AIRTIME_MIN, config.ARC_AIRTIME_MAX,
+  );
   const radius = (SPRITE_SIZE * config.OBJECT_SCALE) / 2;
 
   const obj = k.add([
@@ -33,7 +37,7 @@ export function spawnWine(k: KAPLAYCtx): GameObj {
     k.scale(config.OBJECT_SCALE),
     k.rotate(0),
     k.z(20),
-    physics(k, vel),
+    physics(k, arc.vel, arc.gravity),
     spin(k, k.rand(-config.SPIN_SPEED, config.SPIN_SPEED)),
     "sliceable",
     "wine",

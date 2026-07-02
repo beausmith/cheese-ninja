@@ -10,6 +10,7 @@ interface ButtonOpts {
   pos: Vec2;
   width?: number;
   height?: number;
+  textSize?: number;
   color?: [number, number, number];
   onClick: () => void;
 }
@@ -21,7 +22,7 @@ export function addButton(k: KAPLAYCtx, opts: ButtonOpts): GameObj {
   const [r, g, b] = opts.color ?? [201, 135, 26];
 
   const btn = k.add([
-    k.rect(w, h, { radius: 16 }),
+    k.rect(w, h, { radius: Math.max(8, h * 0.18) }),
     k.pos(opts.pos),
     k.anchor("center"),
     k.color(r, g, b),
@@ -33,7 +34,7 @@ export function addButton(k: KAPLAYCtx, opts: ButtonOpts): GameObj {
   ]);
 
   btn.add([
-    k.text(opts.label, { size: 36 }),
+    k.text(opts.label, { size: opts.textSize ?? 36 }),
     k.anchor("center"),
     k.color(255, 255, 255),
   ]);

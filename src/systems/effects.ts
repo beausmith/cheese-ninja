@@ -2,7 +2,6 @@
 // Kept separate so entities can call these without caring how they're drawn.
 
 import type { KAPLAYCtx, Vec2, Color } from "kaplay";
-import { config } from "../config";
 
 /** Spray a handful of small colored squares outward from a point, then fade. */
 export function burstParticles(
@@ -25,7 +24,8 @@ export function burstParticles(
       {
         vel: dir,
         update(this: any) {
-          this.vel.y += config.GRAVITY * 0.6 * k.dt();
+          // Gravity scaled to screen height so particles fall naturally on any device.
+          this.vel.y += k.height() * 1.2 * k.dt();
           this.pos = this.pos.add(this.vel.scale(k.dt()));
         },
       },

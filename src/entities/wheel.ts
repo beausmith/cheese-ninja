@@ -8,7 +8,7 @@ import { GIANT_WHEEL, halfKeys } from "../loadAssets";
 import {
   physics,
   spin,
-  launchVelocity,
+  makeArc,
   randomSpawnX,
   spawnHalf,
   type SliceResult,
@@ -22,7 +22,11 @@ export function spawnWheel(k: KAPLAYCtx): GameObj {
   const baseKey = `cheese_${GIANT_WHEEL}`;
   const startX = randomSpawnX(k);
   const startPos = k.vec2(startX, k.height() + 120);
-  const vel = launchVelocity(k, startX, config.WHEEL_VY_MIN, config.WHEEL_VY_MAX);
+  const arc = makeArc(
+    k, startX,
+    config.WHEEL_PEAK_MIN, config.WHEEL_PEAK_MAX,
+    config.WHEEL_AIRTIME_MIN, config.WHEEL_AIRTIME_MAX,
+  );
   const scale = config.OBJECT_SCALE * config.WHEEL_SCALE;
   const radius = (SPRITE_SIZE * scale) / 2;
 
@@ -33,7 +37,7 @@ export function spawnWheel(k: KAPLAYCtx): GameObj {
     k.scale(scale),
     k.rotate(0),
     k.z(25),
-    physics(k, vel),
+    physics(k, arc.vel, arc.gravity),
     spin(k, k.rand(-config.SPIN_SPEED * 0.5, config.SPIN_SPEED * 0.5)),
     "sliceable",
     "wheel",
@@ -61,8 +65,8 @@ export function spawnWheel(k: KAPLAYCtx): GameObj {
 
         // Final slice: split into halves, swap to the shattered sprite, bonus!
         const { left, right } = halfKeys(baseKey);
-        spawnHalf(k, left, this.pos, self.vel, this.angle, scale, -1);
-        spawnHalf(k, right, this.pos, self.vel, this.angle, scale, +1);
+        spawnHalf(k, left, this.pos, self.vel, self.gravity, this.angle, scale, -1);
+        spawnHalf(k, right, this.pos, self.vel, self.gravity, this.angle, scale, +1);
         burstParticles(k, this.pos, k.rgb(...WHEEL_PARTICLE), 20);
         this.unuse("sliceable");
         k.destroy(this);

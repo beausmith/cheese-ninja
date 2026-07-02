@@ -25,16 +25,19 @@ export interface Sliceable {
 }
 
 /**
- * Gives an object a velocity and applies gravity every frame, then removes the
- * object once it has fallen well below the bottom of the screen.
+ * Gives an object a velocity + its own gravity and integrates them every frame,
+ * then removes the object once it has fallen well below the bottom of the screen.
+ * (Each object carries its own gravity so arcs can be sized per screen — see
+ * makeArc — rather than sharing one global value.)
  */
-export function physics(k: KAPLAYCtx, vel: Vec2) {
+export function physics(k: KAPLAYCtx, vel: Vec2, gravity: number) {
   return {
     id: "physics",
     vel,
+    gravity,
     update(this: any) {
       // v += g * dt   (gravity pulls down each frame)
-      this.vel.y += config.GRAVITY * k.dt();
+      this.vel.y += this.gravity * k.dt();
       // pos += v * dt (move by the current velocity)
       this.pos = this.pos.add(this.vel.scale(k.dt()));
       // Clean up objects that have left the playfield so they don't pile up.
@@ -55,23 +58,37 @@ export function spin(k: KAPLAYCtx, degPerSec: number) {
   };
 }
 
+// A launch velocity plus the gravity that produces the intended arc.
+export interface Arc {
+  vel: Vec2;
+  gravity: number;
+}
+
 /**
- * Pick a launch velocity that arcs an object up from the bottom edge toward the
- * middle of the screen, with a little random horizontal drift.
+ * Build a launch velocity + gravity so the object rises `peak` (a fraction of
+ * screen height) and stays airborne for `airtime` seconds — regardless of screen
+ * size. Physics: for a rise h over air-time T, gravity g = 8h/T² and the upward
+ * launch speed is 4h/T. Horizontal drift is a fraction of screen WIDTH, biased
+ * back toward center so things stay in view on narrow screens.
  */
-export function launchVelocity(
+export function makeArc(
   k: KAPLAYCtx,
   startX: number,
-  vyMin: number,
-  vyMax: number,
-): Vec2 {
-  const vy = k.rand(vyMin, vyMax);
-  // Bias horizontal drift back toward screen center so objects stay in view.
+  peakMin: number,
+  peakMax: number,
+  airMin: number,
+  airMax: number,
+): Arc {
+  const peak = k.rand(peakMin, peakMax) * k.height(); // rise, in px
+  const T = k.rand(airMin, airMax); // seconds airborne
+  const gravity = (8 * peak) / (T * T);
+  const vy = -(4 * peak) / T;
+
+  const spread = config.LAUNCH_VX_SPREAD_FRAC * k.width();
   const towardCenter = (k.width() / 2 - startX) / (k.width() / 2); // -1..1
-  const vx =
-    k.rand(-config.LAUNCH_VX_SPREAD, config.LAUNCH_VX_SPREAD) +
-    towardCenter * config.LAUNCH_VX_SPREAD * 0.5;
-  return k.vec2(vx, vy);
+  const vx = k.rand(-spread, spread) + towardCenter * spread * 0.5;
+
+  return { vel: k.vec2(vx, vy), gravity };
 }
 
 /** A random X near the bottom edge to launch a new object from. */
@@ -89,6 +106,7 @@ export function spawnHalf(
   spriteKey: string,
   pos: Vec2,
   inheritedVel: Vec2,
+  gravity: number,
   angle: number,
   scale: number,
   dir: -1 | 1,
@@ -105,7 +123,7 @@ export function spawnHalf(
     k.rotate(angle),
     k.opacity(1),
     k.z(20),
-    physics(k, vel),
+    physics(k, vel, gravity),
     spin(k, dir * k.rand(config.SPIN_SPEED, config.SPIN_SPEED * 2)),
     k.lifespan(1.4, { fade: 0.6 }),
   ]);

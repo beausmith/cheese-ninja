@@ -29,20 +29,28 @@ export const config = {
   TRAIL_LENGTH: 12, // How many recent pointer points the blade trail keeps
 
   // --- Object motion (launch arcs) ---
-  // These three move together: to slow objects down WITHOUT making them fly off
-  // the top, lower gravity and the launch velocities by similar amounts. Lower
-  // gravity = more hang time (floatier); lower LAUNCH_VY = gentler arcs; lower
-  // LAUNCH_VX_SPREAD = slower sideways travel. (Was 1800 / -1500..-1900 / 420.)
-  GRAVITY: 1800, // Downward acceleration (px/sec^2) — lower = floatier/slower
-  LAUNCH_VY_MIN: -1500, // Upward launch velocity range (negative = up)
-  LAUNCH_VY_MAX: -1900,
-  LAUNCH_VX_SPREAD: 400, // Max horizontal drift either direction
+  // Arcs are described RELATIVE to the screen so objects reach the same part of
+  // the playfield on ANY device (small phones included) instead of overshooting.
+  // The engine derives the actual launch velocity + gravity from these:
+  //   PEAK    = how high the arc rises, as a fraction of screen height
+  //             (1.0 ≈ near the top; 0.6 ≈ about mid-screen)
+  //   AIRTIME = how long the object stays airborne, in seconds (bigger = floatier)
+  // Raise PEAK to fly higher; raise AIRTIME to slow things down / add hang time.
+  ARC_PEAK_MIN: 0.62,
+  ARC_PEAK_MAX: 1.0,
+  ARC_AIRTIME_MIN: 1.7,
+  ARC_AIRTIME_MAX: 2.2,
+  // Max sideways drift as a fraction of screen WIDTH per second (keeps objects
+  // from flying off the sides on narrow screens).
+  LAUNCH_VX_SPREAD_FRAC: 0.3,
   SPIN_SPEED: 180, // Max spin (degrees/sec) given to objects and halves
 
-  // Giant wheel: launches high (and stays airborne a while) so it's sliceable
-  // several times. Make these MORE negative to fly higher, less to fly lower.
-  WHEEL_VY_MIN: -1600,
-  WHEEL_VY_MAX: -1850,
+  // Giant wheel: rises high and hangs a bit longer so it's easy to slice several
+  // times before it falls. Same relative units as above.
+  WHEEL_PEAK_MIN: 0.78,
+  WHEEL_PEAK_MAX: 0.92,
+  WHEEL_AIRTIME_MIN: 2.5,
+  WHEEL_AIRTIME_MAX: 3.1,
   WHEEL_SCALE: 1.8, // Wheel is drawn larger than normal cheese
 
   // --- Visuals ---

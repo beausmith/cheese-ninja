@@ -8,7 +8,7 @@ import { CHEESE_TYPES, halfKeys } from "../loadAssets";
 import {
   physics,
   spin,
-  launchVelocity,
+  makeArc,
   randomSpawnX,
   spawnHalf,
   type SliceResult,
@@ -24,7 +24,11 @@ export function spawnCheese(k: KAPLAYCtx): GameObj {
   const baseKey = `cheese_${type}`;
   const startX = randomSpawnX(k);
   const startPos = k.vec2(startX, k.height() + 80);
-  const vel = launchVelocity(k, startX, config.LAUNCH_VY_MIN, config.LAUNCH_VY_MAX);
+  const arc = makeArc(
+    k, startX,
+    config.ARC_PEAK_MIN, config.ARC_PEAK_MAX,
+    config.ARC_AIRTIME_MIN, config.ARC_AIRTIME_MAX,
+  );
   const radius = (SPRITE_SIZE * config.OBJECT_SCALE) / 2;
 
   const obj = k.add([
@@ -34,7 +38,7 @@ export function spawnCheese(k: KAPLAYCtx): GameObj {
     k.scale(config.OBJECT_SCALE),
     k.rotate(0),
     k.z(20),
-    physics(k, vel),
+    physics(k, arc.vel, arc.gravity),
     spin(k, k.rand(-config.SPIN_SPEED, config.SPIN_SPEED)),
     "sliceable",
     "cheese",
@@ -43,8 +47,9 @@ export function spawnCheese(k: KAPLAYCtx): GameObj {
       slice(this: GameObj): SliceResult | null {
         // Split into halves at the current spin angle, burst particles, vanish.
         const { left, right } = halfKeys(baseKey);
-        spawnHalf(k, left, this.pos, (this as any).vel, this.angle, config.OBJECT_SCALE, -1);
-        spawnHalf(k, right, this.pos, (this as any).vel, this.angle, config.OBJECT_SCALE, +1);
+        const g = (this as any).gravity;
+        spawnHalf(k, left, this.pos, (this as any).vel, g, this.angle, config.OBJECT_SCALE, -1);
+        spawnHalf(k, right, this.pos, (this as any).vel, g, this.angle, config.OBJECT_SCALE, +1);
         burstParticles(k, this.pos, k.rgb(...CHEESE_PARTICLE), 12);
         k.destroy(this);
         return { kind: "cheese" };
